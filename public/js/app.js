@@ -1,18 +1,19 @@
 class UserDashboard extends React.Component {
     state = {
-        users: [],
+      users: [],
     };
 
     componentDidMount() {
-        this.getUsers();
+      this.getUsers();
     }
 
     getUsers = () => {
-        client.getUsers((users) => {
-                console.log("users", users)
-                this.setState({users: users})
-            }
-        );
+      client.getUsers((users) => {
+        console.log("users", users)
+        this.setState({
+          users: users
+        })
+      });
     };
 
     handleLoginChange = (id, input) => {
@@ -22,7 +23,9 @@ class UserDashboard extends React.Component {
         }
         return user
       })
-      this.setState({ users })
+      this.setState({
+        users
+      })
     };
 
     handleLoginEditingModeChange = (id) => {
@@ -32,18 +35,21 @@ class UserDashboard extends React.Component {
         }
         return user
       })
-      this.setState({ users })
+      this.setState({
+        users
+      })
     }
 
     handleDeleteUsert = (id) => {
-      let users = this.state.users.filter(user => user.id !== id )
-      this.setState({ users })
+      let users = this.state.users.filter(user => user.id !== id)
+      this.setState({
+        users
+      })
     };
 
     render() {
       let users = this.state.users
       let userCards = users.map((user) => {
-          console.log(user.id)
           return <UserInfoCard
               key = {user.id}
               id = {user.id}
@@ -53,7 +59,7 @@ class UserDashboard extends React.Component {
               handleLoginChange = {this.handleLoginChange}
               handleLoginEditingModeChange = {this.handleLoginEditingModeChange}
               isEditing = {user.isEditing}
-              handleDeleteUsert = {this.handleDeleteUsert}
+              handleDeleteUsert = {this.handleDeleteUsert }
               />
       })
       return (
@@ -66,13 +72,8 @@ class UserDashboard extends React.Component {
 
 class UserInfoCard extends React.Component {
 
-    handleUpVote() {
-      console.log("upvote")
-    }
-
     render() {
       let login
-
       if (this.props.isEditing) {
           login =  <input
             type='text'
@@ -80,9 +81,7 @@ class UserInfoCard extends React.Component {
             onChange={(input) => this.props.handleLoginChange(this.props.id, input)}
             />
       } else {
-        login = this.props.login
-      }
-
+        login = this.props.login}
 
         return (
             <div className='item'>
