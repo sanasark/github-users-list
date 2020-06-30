@@ -126,6 +126,7 @@ class UserInfoCard extends React.Component {
           </div>
           <div className="description">
             You can visit github page by clicking url below
+            <p></p>
             <a href={this.props.url}>github url</a>
           </div>
           <div className="middle aligned content">
